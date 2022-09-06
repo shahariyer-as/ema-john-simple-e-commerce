@@ -12,6 +12,7 @@
 .review-item-details p {
   margin: 0;
 }
+
 .review-item-details-container {
   display: flex;
   justify-content: space-between;

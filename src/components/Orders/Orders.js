@@ -12,7 +12,6 @@ const Orders = () => {
   const [cart, setCart] = useCart(products);
   let navigate = useNavigate();
 
-
   // remove order item handler
   const handleRemoveProduct = (products) => {
     const rest = cart.filter((product) => product.id !== products.id);

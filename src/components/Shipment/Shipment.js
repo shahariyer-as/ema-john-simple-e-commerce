@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
 const Shipment = () => {
+  const [user] = useAuthState(auth);
+  // console.log(user.email);s
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
@@ -23,6 +26,10 @@ const Shipment = () => {
 
   const handleCrateUser = (event) => {
     event.preventDefault();
+    const userEmail = user?.email;
+    setEmail(userEmail);
+    const shipping = { name, email, address, phone };
+    console.log(shipping);
   };
 
   return (
@@ -41,6 +48,17 @@ const Shipment = () => {
             />
           </div>
           <div className="input-group">
+            <label htmlFor="email ">Email</label>
+            <input
+              value={user?.email}
+              readOnly
+              type="email"
+              name="email"
+              id=""
+              required
+            />
+          </div>
+          <div className="input-group">
             <label htmlFor="address">Address</label>
             <input
               onBlur={handleAddressBlur}
@@ -51,11 +69,11 @@ const Shipment = () => {
             />
           </div>
           <div className="input-group">
-            <label htmlFor="phone-number">Phone Number</label>
+            <label htmlFor="phone">Phone Number</label>
             <input
               onBlur={handleNumberBlur}
-              type="number"
-              name="phone-number"
+              type="text"
+              name="phone"
               id=""
               required
             />

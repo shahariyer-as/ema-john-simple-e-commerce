@@ -8,8 +8,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const [signInWithEmailAndPassword, user, error, loading] =
+  const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  console.log("error", error?.message);
 
   const handleEmailBlur = (event) => {
     setEmail(event.target.value);
@@ -17,8 +18,9 @@ const Login = () => {
   const handlePasswordBlur = (event) => {
     setPassword(event.target.value);
   };
+
   if (user) {
-    Navigate("/shop");
+    navigate("/shop");
   }
   const handleUserSignIn = (event) => {
     event.preventDefault();
@@ -51,13 +53,10 @@ const Login = () => {
             />
           </div>
           <p style={{ color: " red" }}>{error?.message}</p>
-          {
-            loading&& <p>Loading....</p>
-          }
+          {loading && <p>Loading....</p>}
           <input className="form-submit" type="submit" value="Login" />
         </form>
         <p>
-          New to Ema-John{" "}
           <Link className="form-link" to="/signup">
             Create an account
           </Link>

@@ -5,7 +5,6 @@ import auth from "../../firebase.init";
 
 const Shipment = () => {
   const [user] = useAuthState(auth);
-  // console.log(user.email);s
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -26,8 +25,8 @@ const Shipment = () => {
 
   const handleCrateUser = (event) => {
     event.preventDefault();
-    const userEmail = user?.email;
-    setEmail(userEmail);
+    // const userEmail = user?.email;
+    // setEmail(userEmail);
     const shipping = { name, email, address, phone };
     console.log(shipping);
   };
